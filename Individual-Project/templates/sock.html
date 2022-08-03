@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Write a review!</button>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Write a review!<h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/sock" method="POST" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label class="form-label required">Review Name</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label required">Review here</label>
+                                <textarea class="form-control" name="review"></textarea>
+                            </div
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    {% for review in reviews %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{review['name']}</h5>
+                <p class="card-text">{{review['review']}}</p>
+                <p class="card-text">{{review['username']}}</p>
+                <p class="card-text">{{review['date']}}</p>
+            </div>
+        </div>
+    {% endfor %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/sock.js')}}"></script>
+</body>
+</html>
