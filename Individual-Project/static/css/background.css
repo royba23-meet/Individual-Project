@@ -1,0 +1,27 @@
+html, body
+{
+    margin: 0;
+    height: 100%
+}
+
+.bg
+{
+    background-image: url("keith.png");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  
+    
+    height: 100%;
+  
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover; 
+}
+
+#test 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
