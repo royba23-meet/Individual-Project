@@ -59,13 +59,13 @@ def signin():
 
 @app.route('/sock', methods=['GET', 'POST'])
 def sock():
-    reviews = db.child('reviews').child('socks').get().val().values()
+    reviews = db.child('reviews').get().val().values()
     if request.method == 'POST':
         try:
             session['username'] = db.child('users').child(session['user']['localId']).get().val()['username']
             sock = {'name': request.form['name'], 'username':session['username'],'review':request.form['review'],'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-            db.child('reviews').child('socks').push(sock)
-            reviews = db.child('reviews').child('socks').get().val().values()
+            db.child('reviews').child('socks').update(sock)
+            reviews = db.child('reviews').get().val().values()
             return redirect(url_for('sock', reviews=reviews))
         except Exception:
             flash('Invalid file')
